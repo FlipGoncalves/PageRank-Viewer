@@ -1,1 +1,1 @@
-web: gunicorn APSEI_code:app
+web: gunicorn main:app
