@@ -35,6 +35,7 @@ class Node:
     def __str__(self):
         return f"Node: {self.value}\n\tConnections: {self.connections}"
 
+
 @app.route("/")
 def index():
     num_pages = random.randint(1,10)
