@@ -33,7 +33,7 @@ class Node:
         self.connections = []
 
     def __str__(self):
-        return f"Node: {self.value}\n\tConnections: {self.connections}"
+        return f"Page: {self.value}\n\tConnections: {self.connections}"
 
 
 @app.route("/")
@@ -62,8 +62,10 @@ def index():
     pages = main_demo(num_pages, connections, num_iterations)
 
     for node in connections:
-        net.add_node(node.value, label=f"Node {node.value}", size=50, 
-                title=f"Page Rank: {pages[node.value-1][-1]}\nConnected to: {node.connections}", physics=True)
+        con = ["Page " + chr(64 + x) for x in node.connections]
+        backlinks = ["Page " + chr(64 + x.value) for x in connections if x != node if node.value in x.connections]
+        net.add_node(node.value, label=f"Page {chr(64 + node.value)}", size=pages[node.value-1][-1]*50, 
+                title=f"Page Rank: {round(pages[node.value-1][-1],2)}\nExternal Links: {con}\nBacklinks: {backlinks}", physics=True)
 
     for node in connections:
         for con in node.connections:
