@@ -38,7 +38,7 @@ class Node:
 
 @app.route("/")
 def index():
-    num_pages = random.randint(1,10)
+    num_pages = random.randint(1,20)
     num_iterations = 100
 
     net = Network('100%', '100%', notebook=True, directed =True)
